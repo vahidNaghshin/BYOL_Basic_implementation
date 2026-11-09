@@ -10,36 +10,6 @@ A clean, step-by-step PyTorch implementation of **"Bootstrap Your Own Latent: A 
 - **Exponential Moving Average (EMA)**: Custom Parameter-EMA module to update the target network step-by-step without gradient calculations.
 - **Symmetric BYOL Loss**: Fully vectorized implementation of the normalized Mean Squared Error (MSE) loss applied symmetrically to both view variations to stabilize representation learning.
 
-## 🛠️ Architecture Overview
-  +--------------------------------------------+
-        |                 Input Image                |
-        +--------------------------------------------+
-                              |                       
-             +----------------+----------------+
-             |                                 | (Dual-View Transforms)
-             v                                 v
-       +-----------+                     +-----------+
-       |  View v1  |                     |  View v2  |
-       +-----------+                     +-----------+
-             |                                 |
-             v                                 v
-     [Online Network]                  [Target Network] (EMA Updated)
-     +---------------+                 +----------------+
-     | Encoder  (fθ) |                 | Encoder   (fξ) |
-     +---------------+                 +----------------+
-             |                                 |
-             v                                 v
-     +---------------+                 +----------------+
-     | Projector (gθ)|                 | Projector (gξ) |
-     +---------------+                 +----------------+
-             |                                 |
-             v                                 v
-     +---------------+                         | (No Gradient Target)
-     | Predictor (qθ)|                         | 
-     +---------------+                         | 
-             |                                 | 
-             v                                 v
-     Prediction (p1) <--- Symmetric Loss ---> Target (z2)
 
 ## 📦 Requirements
 
